@@ -5,9 +5,9 @@
 #define BLMotorPort 19
 #define BRMotorPort 16
 /*lift motor ports*/
-#define LiftMotorPort 7
+#define LiftMotorPort 4
 /*cube claw motor port*/
-#define ClawMotorPort 9
+#define ClawMotorPort 8
 //port 4 fried
 //define all sensor ports constant variables here
 /**

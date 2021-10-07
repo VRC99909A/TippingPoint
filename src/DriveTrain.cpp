@@ -34,8 +34,8 @@ void DriveTrain_fn(void* param) {
   //int power = master.get_analog(ANALOG_LEFT_Y); //left joystick Y drive straight
   int power = master.get_analog(ANALOG_RIGHT_Y); //right joystick Y drive straight
   int turn = master.get_analog(ANALOG_RIGHT_X);
-  int LeftControl = power + turn;
-  int RightControl = power - turn;
+  int LeftControl = power - turn;
+  int RightControl = power + turn;
 
   while (true){
 
@@ -55,8 +55,8 @@ void DriveTrain_fn(void* param) {
     //power = master.get_analog(ANALOG_LEFT_Y); //left joystick Y drive straight
     power = master.get_analog(ANALOG_RIGHT_Y); //right joystick Y drive straight
     turn = master.get_analog(ANALOG_RIGHT_X);
-    LeftControl = power + turn;
-    RightControl = power - turn;
+    LeftControl = power - turn;
+    RightControl = power + turn;
     FLMotor.move(LeftControl);
     BLMotor.move(LeftControl);
     FRMotor.move(RightControl);

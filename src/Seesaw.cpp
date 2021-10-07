@@ -19,11 +19,11 @@ void Claw_fn(void* param) {
   while (true) {
 
     if (master.get_digital(DIGITAL_R1)) {
-      ClawMotor.move_voltage(7000);
+      ClawMotor.move_voltage(10000); //max voltage 12000 
       //pros::delay(20);
     }
     else if (master.get_digital(DIGITAL_R2)) {
-      ClawMotor.move_voltage(-5000);
+      ClawMotor.move_voltage(-10000);
       //pros::delay(20);
     }
     else {
