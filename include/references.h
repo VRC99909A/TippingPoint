@@ -4,11 +4,14 @@
 #define FRMotorPort 10
 #define BLMotorPort 19
 #define BRMotorPort 16
-/*lift motor ports*/
+/*ring belt motor ports*/
 #define LiftMotorPort 4
-/*cube claw motor port*/
+/*front claw motor port*/
 #define ClawMotorPort 8
+/*back claw motor port*/
+#define BackClawMotorPort 3
 //port 4 fried
+//port 5 fried
 //define all sensor ports constant variables here
 /**
 #define GyroPort 1
@@ -20,10 +23,12 @@ extern pros::Motor FLMotor;
 extern pros::Motor FRMotor;
 extern pros::Motor BLMotor;
 extern pros::Motor BRMotor;
- /*lift motor variables*/
+ /*ring belt motor variables*/
 extern pros::Motor LiftMotor;
-/*cube claw motor variables*/
+/*front claw motor variables*/
 extern pros::Motor ClawMotor;
+/*back claw motor variables*/
+extern pros::Motor BackClawMotor;
 
  //declare global controller object variable here
 extern pros::Controller master;
@@ -49,17 +54,23 @@ void Rotate(double, int);
 
 bool AtDistanceDriveGoal(int);
 
-//declare lift function prototype
+//declare ring belt function prototype
 void Lift_fn(void* param);
 void Lift(double, int);
 
 bool AtDistanceLiftGoal(int);
 
-//declare claw function prototype
+//declare front claw function prototype
 void Claw_fn(void* param);
 void Claw(double, int);
 
 bool AtDistanceClawGoal(int);
+
+//declare back claw function prototype
+void BackClaw_fn(void* param);
+void BackClaw(double, int);
+
+bool AtDistanceBackClawGoal(int);
 
 
 //declare functions for antonomous.cpp

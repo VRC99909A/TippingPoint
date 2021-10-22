@@ -6,16 +6,17 @@
                      const bool reverse,
                      const pros::motor_encoder_units_e_t encoder_units );
 **/
-/*drivetrain motors*/
+/*drivetrain motors - green gearset*/
 pros::Motor FLMotor(FLMotorPort, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor FRMotor(FRMotorPort, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor BLMotor(BLMotorPort, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor BRMotor(BRMotorPort, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-/*lift motors*/
-pros::Motor LiftMotor(LiftMotorPort, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
-/*cube claw motors*/
+/*ring belt motors - green gearset*/
+pros::Motor LiftMotor(LiftMotorPort, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+/*front claw motors - red gearset*/
 pros::Motor ClawMotor(ClawMotorPort, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
-
+/*back claw motors - red gearset*/
+pros::Motor BackClawMotor(BackClawMotorPort, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
 
 //define all controllers here
 /**
