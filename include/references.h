@@ -75,18 +75,16 @@ bool AtDistanceBackClawGoal(int);
 
 //declare functions for antonomous.cpp
 /* function for red alliance side close to goal zone*/
-void RedGoalSide();
-void RedFarSide();
-void BlueGoalSide();
-void BlueFarSide();
-void basic();
-void BlueBasic();
-void Redbasic();
+void left();
+void right();
+void both();
+void none();
+
 
 void SkillsAuton();
 /* variables and functions for auton selector */
 extern int autonselector;
-extern const char *titles[8];
-extern void (*scripts[8])();
+extern const char *titles[5];
+extern void (*scripts[5])();
 
 void LCDScriptExecute();
