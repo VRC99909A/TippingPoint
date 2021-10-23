@@ -80,11 +80,14 @@ void right();
 void both();
 void none();
 
-
 void SkillsAuton();
 /* variables and functions for auton selector */
+//deckare autonselector - LED on screen auton selection indicator
 extern int autonselector;
+//declare string array "titles[]" as constant to store auto script function names for LED display
 extern const char *titles[5];
+//declare an array of function pointers for all auton script functions
 extern void (*scripts[5])();
-
+//declare auton script runner function - to be called in the main
+//or you can directly call through function pointer array - scripts[autonselector]();
 void LCDScriptExecute();

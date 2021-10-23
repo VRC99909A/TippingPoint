@@ -134,8 +134,11 @@ void none(){
 
 /**varirables and functions array for auton selector**/
 int autonselector = 0;
+//define and initialize string array "titles[]" as constant
 const char *titles[] = {"left", "right", "both", "none", "SkillsAuton"};
 
+//define and initialize an array of function pointers for all auton functions
 void (*scripts[])() = {&left, &right, &both, &none, &SkillsAuton};
 
+//define auton script runner function - run the selected auton script through on screen "autonselector"
 void LCDScriptExecute() {scripts[autonselector]();}
