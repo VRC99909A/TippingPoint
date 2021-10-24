@@ -71,7 +71,8 @@ void BackClaw_fn(void* param);
 void BackClaw(double, int);
 
 bool AtDistanceBackClawGoal(int);
-
+bool AtDistanceBackClawGoalMin(int);
+bool AtDistanceBackClawGoalMax(int);
 
 //declare functions for antonomous.cpp
 /* function for red alliance side close to goal zone*/
