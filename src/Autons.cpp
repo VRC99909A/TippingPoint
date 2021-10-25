@@ -128,41 +128,7 @@ void none(){
 
 }
 
-void NeutralRight(){
-  //drive out to hit netural mobile goal
-  Drive(300.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //use claw to lift mobile goal up
-  Claw(200.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //drive back
-  Drive(-250.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //use claw to drop mobile goal
-  Claw(-200.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //drive back away from dropped mobile goal
-  Drive(-100.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-
-}
-
-void NeutralLeft(){
+void Neutral(){
   //drive out to hit netural mobile goal
   Drive(300.0, 75);
   do {
@@ -203,10 +169,10 @@ void NeutralLeft(){
 /**varirables and functions array for auton selector**/
 int autonselector = 0;
 //define and initialize string array "titles[]" as constant
-const char *titles[] = {"left", "right", "both", "none", "NeutralRight", "NeutralLeft", "SkillsAuton"};
+const char *titles[] = {"left", "right", "both", "none", "Neutral", "SkillsAuton"};
 
 //define and initialize an array of function pointers for all auton functions
-void (*scripts[])() = {&left, &right, &both, &none, &NeutralRight, &NeutralLeft, &SkillsAuton};
+void (*scripts[])() = {&left, &right, &both, &none, &Neutral, &SkillsAuton};
 
 //define auton script runner function - run the selected auton script through on screen "autonselector"
 void LCDScriptExecute() {scripts[autonselector]();}
