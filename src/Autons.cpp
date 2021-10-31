@@ -20,35 +20,36 @@ void left(){
 /**auton function for taking mobile goal out of triangle & scoring**/
 void right() {
   //put back claw down
-  BackClaw(-200.0, 100);
+  Claw(300.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceClawGoal(5));
   pros::delay(20);
   //drive out till hit mobile goal
-  Drive(-75.0, 75);
+  Drive(-500.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
   //use claw to lift mobile goal up
-  BackClaw(200.0, 100);
+  BackClaw(-450.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceBackClawGoal(10));
   pros::delay(20);
   //deposit preload from roller onto mobile goal
-  Lift(150.0, 75);
+  Lift(-1500.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceLiftGoal(5));
   pros::delay(20);
   //drive back to get out of triangle zone
-  Drive(50.0, 75);
+  Rotate(200.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
+
 }
 
 

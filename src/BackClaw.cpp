@@ -26,8 +26,8 @@ void BackClaw_fn(void* param) {
 
   int rot_limit_max, rot_limit_min, starting_rot;
   starting_rot = BackClawMotor.get_position();
-  rot_limit_min = 0 + starting_rot;
-  rot_limit_max = 360 + starting_rot;
+  rot_limit_min = 0;
+  rot_limit_max = 370;
 
   while (true) {
 
@@ -48,8 +48,8 @@ void BackClaw_fn(void* param) {
       //pros::delay(20);
     }
     else {
-      if (5 < abs(BackClawMotor.get_position() - rot_limit_max) && abs(BackClawMotor.get_position() - rot_limit_max) < 30 and BackClawMotor.get_position() < rot_limit_max){
-        BackClawMotor.move_voltage(1000);
+      if (25 < abs(BackClawMotor.get_position() - rot_limit_max) && abs(BackClawMotor.get_position() - rot_limit_max) < 30 and BackClawMotor.get_position() < rot_limit_max){
+        BackClawMotor.move_voltage(5000);
         do {
           pros::delay(20);
         } while (BackClawMotor.get_position() < rot_limit_max);
