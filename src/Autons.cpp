@@ -8,7 +8,7 @@ void left(){
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
-  //ring falls into mobile goal
+  //ring falls into mobile goal & back out
   Drive(-50.0, 75);
   do {
     pros::delay(20);
@@ -19,20 +19,14 @@ void left(){
 
 /**auton function for taking mobile goal out of triangle & scoring**/
 void right() {
-  //drive out a bit
+  //put back claw down
+  BackClaw(-200.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  //drive out till hit mobile goal
   Drive(-75.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //rotate toward mobile goal
-  Rotate(45.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //drive forward until reach mobile goal
-  Drive(-100.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -67,7 +61,7 @@ void both(){
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
-  //ring falls into mobile goal
+  //ring falls into mobile goal & back out
   Drive(-50.0, 75);
   do {
     pros::delay(20);
@@ -93,6 +87,12 @@ void both(){
   pros::delay(20);
   //rotate so back is toward right side of field
   Rotate(-90.0, 75);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  //put back claw down
+  BackClaw(-200.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -147,18 +147,7 @@ void Neutral(){
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
-  //use claw to drop mobile goal
-  Claw(-200.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //drive back away from dropped mobile goal
-  Drive(-100.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
+
 
 }
 
