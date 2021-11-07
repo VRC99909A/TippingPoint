@@ -3,13 +3,13 @@
 /**auton function for scoring on goal on bridge**/
 void left(){
   //drive out to hit mobile goal
-  Drive(50.0, 75);
+  Drive(50.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
   //ring falls into mobile goal & back out
-  Drive(-50.0, 75);
+  Drive(-50.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -43,12 +43,31 @@ void right() {
     pros::delay(20);
   } while (!AtDistanceLiftGoal(5));
   pros::delay(20);
-  //drive back to get out of triangle zone
-  Rotate(200.0, 100);
+  //rotate to make front face neutral goal
+  Rotate(200.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
+  //drive to reach neutral mobile goal
+  Drive(500.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  //pick up neutral mobile goal
+  Claw(-300.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceClawGoal(5));
+  pros::delay(20);
+  //drive back into home zone
+  Drive(-700.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+
 
 }
 
@@ -57,13 +76,13 @@ void right() {
 
 void both(){
   //drive out to hit mobile goal
-  Drive(50.0, 75);
+  Drive(50.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
   //ring falls into mobile goal & back out
-  Drive(-50.0, 75);
+  Drive(-50.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -96,7 +115,7 @@ void both(){
   BackClaw(-200.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceBackClawGoal(5));
   pros::delay(20);
   //drive towards mobile goal in triangle
   Drive(-400.0, 75);
@@ -109,13 +128,13 @@ void both(){
   BackClaw(200.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceBackClawGoal(5));
   pros::delay(20);
   //deposit preload from roller onto mobile goal
   Lift(150.0, 75);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceLiftGoal(5));
   pros::delay(20);
   //drive back to get out of triangle zone
   Drive(50.0, 75);
@@ -140,7 +159,7 @@ void Neutral(){
   Claw(200.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceClawGoal(5));
   pros::delay(20);
   //drive back
   Drive(-250.0, 75);
