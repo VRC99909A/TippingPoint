@@ -20,55 +20,62 @@ void left(){
 /**auton function for taking mobile goal out of triangle & scoring**/
 void right() {
   //put back claw down
-  Claw(300.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceClawGoal(5));
-  pros::delay(20);
-  //drive out till hit mobile goal
-  Drive(-500.0, 100);
+  Claw(-800.0, 100);
+  pros::delay(500);
+  Drive(-750.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
   //use claw to lift mobile goal up
-  BackClaw(-450.0, 100);
+  BackClaw(370.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceBackClawGoal(10));
-  pros::delay(20);
+  pros::delay(500);
   //deposit preload from roller onto mobile goal
-  Lift(-1500.0, 100);
+  Lift(-500.0, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceLiftGoal(5));
   pros::delay(20);
   //rotate to make front face neutral goal
-  Rotate(200.0, 75);
+  Drive(400.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Rotate(390.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
   //drive to reach neutral mobile goal
-  Drive(500.0, 100);
+  Drive(400.0, 100);
+  pros::delay(1000);
+  Drive(-400.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
-  //pick up neutral mobile goal
-  Claw(-300.0, 100);
+  Rotate(300.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(750);
+  Drive(1000.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(1000);
+  Claw(500.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
   pros::delay(20);
+  //pick up neutral mobile goal
   //drive back into home zone
-  Drive(-700.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-
-
+  Drive(-10000.0, 25);
 }
 
 
