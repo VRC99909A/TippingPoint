@@ -80,7 +80,7 @@ void left();
 void right();
 void both();
 void none();
-void Neutral();
+void NeutralBoth();
 
 void SkillsAuton();
 /* variables and functions for auton selector */

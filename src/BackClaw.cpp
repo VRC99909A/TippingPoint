@@ -48,7 +48,7 @@ void BackClaw_fn(void* param) {
       //pros::delay(20);
     }
     else {
-      if (25 < abs(BackClawMotor.get_position() - rot_limit_max) && abs(BackClawMotor.get_position() - rot_limit_max) < 30 and BackClawMotor.get_position() < rot_limit_max){
+      if (25 < abs((int)(BackClawMotor.get_position() - rot_limit_max)) && abs((int)(BackClawMotor.get_position() - rot_limit_max)) < 30 && BackClawMotor.get_position() < rot_limit_max){
         BackClawMotor.move_voltage(5000);
         do {
           pros::delay(20);

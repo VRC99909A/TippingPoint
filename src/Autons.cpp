@@ -2,18 +2,30 @@
 
 /**auton function for scoring on goal on bridge**/
 void left(){
-  //drive out to hit mobile goal
-  Drive(50.0, 100);
+  //put front claw down and score ring with lever
+  Claw(-500.0, 75);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceClawGoal(5));
+  pros::delay(20);
+  //Drive towards mobile goal
+  Drive(1300.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
+  pros::delay(1000);
+  //use claw to get neutal mobile goal
+  Claw(500.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceClawGoal(5));
   pros::delay(20);
-  //ring falls into mobile goal & back out
-  Drive(-50.0, 100);
+  //drive backward slowly
+  Drive(-1300.0, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
+  pros::delay(1000);
 }
 
 
@@ -82,100 +94,110 @@ void right() {
 
 
 void both(){
-  //drive out to hit mobile goal
-  Drive(50.0, 100);
+  //put front claw down and score ring with lever
+  Claw(-500.0, 75);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceClawGoal(5));
+  pros::delay(20);
+  //Drive straight till middle
+  Drive(1300.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //ring falls into mobile goal & back out
-  Drive(-50.0, 100);
+  pros::delay(1000);
+  //Rotate so back claw faces mobile goal in WPZ
+  Rotate(300.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //rotate away from goal
-  Rotate(-90.0, 75);
+  pros::delay(750);
+  //Drive till reach goal in WPZ
+  Drive(-1600.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //re-align with wall
-  Drive(-50.0, 75);
+  pros::delay(1000);
+  //use back claw to collect mobile goal
+  BackClaw(370.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //drive out a bit
-  Drive(150.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //rotate so back is toward right side of field
-  Rotate(-90.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //put back claw down
-  BackClaw(-200.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceBackClawGoal(5));
-  pros::delay(20);
-  //drive towards mobile goal in triangle
-  Drive(-400.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-
-  //use back claw to lift mobile goal up
-  BackClaw(200.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceBackClawGoal(5));
-  pros::delay(20);
+  } while (!AtDistanceBackClawGoal(10));
+  pros::delay(500);
   //deposit preload from roller onto mobile goal
-  Lift(150.0, 75);
+  Lift(-500.0, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceLiftGoal(5));
   pros::delay(20);
-  //drive back to get out of triangle zone
-  Drive(50.0, 75);
+  //Drive out of WPZ
+  Drive(500.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
+  pros::delay(1000);
+
 }
 
 void none(){
 
 }
 
-void Neutral(){
-  //drive out to hit netural mobile goal
-  Drive(300.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  //use claw to lift mobile goal up
-  Claw(200.0, 100);
+void NeutralBoth(){
+  //put front claw down and score ring with lever
+  Claw(-500.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
   pros::delay(20);
-  //drive back
-  Drive(-250.0, 75);
+  //Drive towards mobile goal
+  Drive(1300.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
+  pros::delay(1000);
+  //use claw to get neutal mobile goal
+  Claw(500.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceClawGoal(5));
   pros::delay(20);
-
-
+  //drive backward slowly
+  Drive(-500.0, 75);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(1000);
+  //Rotate so back claw faces mobile goal in WPZ
+  Rotate(300.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(750);
+  //Drive till reach goal in WPZ
+  Drive(-1600.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(1000);
+  //use back claw to collect mobile goal
+  BackClaw(370.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceBackClawGoal(10));
+  pros::delay(500);
+  //deposit preload from roller onto mobile goal
+  Lift(-500.0, 50);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceLiftGoal(5));
+  pros::delay(20);
+  //Drive out of WPZ
+  Drive(500.0, 75);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(1000);
 }
 
 
@@ -185,10 +207,10 @@ void Neutral(){
 /**varirables and functions array for auton selector**/
 int autonselector = 0;
 //define and initialize string array "titles[]" as constant
-const char *titles[] = {"left", "right", "both", "none", "Neutral", "SkillsAuton"};
+const char *titles[] = {"left", "right", "both", "none", "NeutralBoth", "SkillsAuton"};
 
 //define and initialize an array of function pointers for all auton functions
-void (*scripts[])() = {&left, &right, &both, &none, &Neutral, &SkillsAuton};
+void (*scripts[])() = {&left, &right, &both, &none, &NeutralBoth, &SkillsAuton};
 
 //define auton script runner function - run the selected auton script through on screen "autonselector"
 void LCDScriptExecute() {scripts[autonselector]();}
