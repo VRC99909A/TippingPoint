@@ -1,36 +1,71 @@
 #include "main.h"
 
 /**auton function for scoring on goal on bridge**/
-void left(){
+void LeftOne(){
   //put front claw down and score ring with lever
-  Claw(-500.0, 75);
+  Claw(-500.0, 50);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceClawGoal(5));
+  pros::delay(20);
+}
+
+/**auton function for scoring on goal on bridge**/
+void LeftTwo(){
+  //put front claw down and score ring with lever
+  Claw(-300.0, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
   pros::delay(20);
   //Drive towards mobile goal
-  Drive(1300.0, 100);
+  Drive(1400.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(1000);
   //use claw to get neutal mobile goal
-  Claw(500.0, 100);
+  Claw(500.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
   pros::delay(20);
-  //drive backward slowly
-  Drive(-1300.0, 50);
+  //drive backward slowly into home zone
+  Drive(-1300.0, 25);
+}
+
+void RightOne() {
+  //put back claw down
+  Claw(-800.0, 100);
+  pros::delay(500);
+  Drive(-750.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(1000);
+  pros::delay(20);
+  //use claw to lift mobile goal up
+  BackClaw(370.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceBackClawGoal(10));
+  pros::delay(500);
+  //deposit preload from roller onto mobile goal
+  Lift(-500.0, 50);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceLiftGoal(5));
+  pros::delay(20);
+  //drive back
+  Drive(300.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+
 }
 
-
 /**auton function for taking mobile goal out of triangle & scoring**/
-void right() {
+void RightTwo() {
   //put back claw down
   Claw(-800.0, 100);
   pros::delay(500);
@@ -93,27 +128,27 @@ void right() {
 
 
 
-void both(){
+void BothOne(){
   //put front claw down and score ring with lever
-  Claw(-500.0, 75);
+  Claw(-300.0, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
   pros::delay(20);
   //Drive straight till middle
-  Drive(1300.0, 100);
+  Drive(750.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(1000);
   //Rotate so back claw faces mobile goal in WPZ
-  Rotate(300.0, 100);
+  Rotate(325.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(750);
   //Drive till reach goal in WPZ
-  Drive(-1600.0, 100);
+  Drive(-2500.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -139,24 +174,21 @@ void both(){
 
 }
 
-void none(){
 
-}
-
-void NeutralBoth(){
+void BothTwo(){
   //put front claw down and score ring with lever
-  Claw(-500.0, 75);
+  Claw(-300.0, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
   pros::delay(20);
   //Drive towards mobile goal
-  Drive(1300.0, 100);
+  Drive(1400.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(1000);
-  //use claw to get neutal mobile goal
+  //use claw to get neutral mobile goal
   Claw(500.0, 100);
   do {
     pros::delay(20);
@@ -169,13 +201,13 @@ void NeutralBoth(){
   } while (!AtDistanceDriveGoal(5));
   pros::delay(1000);
   //Rotate so back claw faces mobile goal in WPZ
-  Rotate(300.0, 100);
+  Rotate(325.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(750);
   //Drive till reach goal in WPZ
-  Drive(-1600.0, 100);
+  Drive(-2500.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -207,10 +239,10 @@ void NeutralBoth(){
 /**varirables and functions array for auton selector**/
 int autonselector = 0;
 //define and initialize string array "titles[]" as constant
-const char *titles[] = {"left", "right", "both", "none", "NeutralBoth", "SkillsAuton"};
+const char *titles[] = {"LeftOne", "LeftTwo", "RightOne", "RightTwo", "BothOne", "BothTwo", "SkillsAuton"};
 
 //define and initialize an array of function pointers for all auton functions
-void (*scripts[])() = {&left, &right, &both, &none, &NeutralBoth, &SkillsAuton};
+void (*scripts[])() = {&LeftOne, &LeftTwo, &RightOne, &RightTwo, &BothOne, &BothTwo, &SkillsAuton};
 
 //define auton script runner function - run the selected auton script through on screen "autonselector"
 void LCDScriptExecute() {scripts[autonselector]();}
