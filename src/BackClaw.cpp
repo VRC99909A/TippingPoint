@@ -31,7 +31,7 @@ void BackClaw_fn(void* param) {
 
   while (true) {
 
-    if (master.get_digital(DIGITAL_UP)){
+    if (master.get_digital(DIGITAL_X)){
       BackClawMotor.move_voltage(5000);
       do {
         pros::delay(20);
@@ -39,7 +39,7 @@ void BackClaw_fn(void* param) {
       pros::delay(20);
       //pros::delay(20);
     }
-    else if (master.get_digital(DIGITAL_DOWN) && BackClawMotor.get_position() > rot_limit_min) {
+    else if (master.get_digital(DIGITAL_B) && BackClawMotor.get_position() > rot_limit_min) {
       BackClawMotor.move_voltage(-5000);
       do {
         pros::delay(20);

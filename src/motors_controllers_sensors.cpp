@@ -17,7 +17,7 @@ pros::Motor LiftMotor(LiftMotorPort, pros::E_MOTOR_GEARSET_18, false, pros::E_MO
 pros::Motor ClawMotor(ClawMotorPort, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
 /*back claw motors - red gearset*/
 pros::Motor BackClawMotor(BackClawMotorPort, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
-
+pros::Motor SnapMotor(SnapMotorPort, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
 //define all controllers here
 /**
 pros::Controller::Controller ( pros::controller_id_e_t id )

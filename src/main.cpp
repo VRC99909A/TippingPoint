@@ -124,6 +124,7 @@ void autonomous() {
 	pros::Task Lift(Lift_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
 	pros::Task Claw(Claw_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
 	pros::Task BackClaw(BackClaw_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
+	pros::Task Snap(Snap_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
 
  	//while true loop - to keep the above tasks going
  	while (true) {

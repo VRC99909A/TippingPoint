@@ -10,6 +10,8 @@
 #define ClawMotorPort 8
 /*back claw motor port*/
 #define BackClawMotorPort 3
+/*snap claw motor port*/
+#define SnapMotorPort 7
 //port 4 fried
 //port 5 fried
 //define all sensor ports constant variables here
@@ -29,6 +31,8 @@ extern pros::Motor LiftMotor;
 extern pros::Motor ClawMotor;
 /*back claw motor variables*/
 extern pros::Motor BackClawMotor;
+/*snap claw motor variables*/
+extern pros::Motor SnapMotor;
 
  //declare global controller object variable here
 extern pros::Controller master;
@@ -73,6 +77,12 @@ void BackClaw(double, int);
 bool AtDistanceBackClawGoal(int);
 bool AtDistanceBackClawGoalMin(int);
 bool AtDistanceBackClawGoalMax(int);
+
+//declare front claw function prototype
+void Snap_fn(void* param);
+void Snap(double, int);
+
+bool AtDistanceSnapGoal(int);
 
 //declare functions for antonomous.cpp
 /* function for red alliance side close to goal zone*/
