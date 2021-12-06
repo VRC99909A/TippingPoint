@@ -56,7 +56,7 @@ void BackClaw_fn(void* param) {
         pros::delay(20);
       }
       else{
-          BackClawMotor.move_voltage(0);
+          BackClawMotor.move_velocity(0);
       }
       //pros::delay(20);
     }
