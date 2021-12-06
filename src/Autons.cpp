@@ -3,7 +3,7 @@
 /**auton function for scoring on goal on bridge**/
 void LeftOne(){
   //put front claw up and score ring with lever
-  Claw(300.0, 50);
+  Claw(300.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
@@ -13,31 +13,32 @@ void LeftOne(){
 /**auton function for scoring on goal on bridge**/
 void LeftTwo(){
   //front claw goes up to score ring with lever
-  Claw(300.0, 50);
+  Claw(300.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceClawGoal(5));
-  pros::delay(20);
+  pros::delay(2000);
   //open snap up
-  Snap(-500.0, 75);
+  Snap(-250.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceSnapGoal(5));
-  pros::delay(20);
+  pros::delay(200);
   //put front claw down
-  Claw(-500.0, 50);
+  Claw(-375.0, 100);
   //Drive towards mobile goal
-  Drive(1500.0, 100);
+  Drive(1550.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-  pros::delay(1000);
+  pros::delay(500);
   //use snap to get neutal mobile goal
-  Snap(500.0, 75);
+  Drive(175.0, 25);
+  Snap(600.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceSnapGoal(5));
-  pros::delay(20);
+  pros::delay(2000);
   //drive backward slowly into home zone
   Drive(-1300.0, 25);
 }
@@ -70,7 +71,7 @@ void RightOne() {
   } while (!AtDistanceLiftGoal(5));
   pros::delay(20);
   //drive back
-  Drive(300.0, 100);
+  Drive(500.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -164,25 +165,25 @@ void BothOne(){
   } while (!AtDistanceDriveGoal(5));
   pros::delay(1000);
   //Rotate so back claw faces mobile goal in WPZ
-  Rotate(325.0, 75);
+  Rotate(315.0, 75);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(750);
   //Drive till reach goal in WPZ
-  Drive(-2500.0, 100);
+  Drive(-2575.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
   pros::delay(1000);
   //use back claw to collect mobile goal
-  BackClaw(370.0, 100);
+  BackClaw(360.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceBackClawGoal(10));
   pros::delay(500);
   //deposit preload from roller onto mobile goal
-  Lift(-500.0, 50);
+  Lift(-450.0, 50);
   do {
     pros::delay(20);
   } while (!AtDistanceLiftGoal(5));
