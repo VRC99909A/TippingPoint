@@ -26,11 +26,11 @@ void Snap_fn(void* param) {
 
   while (true) {
 
-    if (master.get_digital(DIGITAL_UP)) {
+    if (master.get_digital(DIGITAL_DOWN)) {
       SnapMotor.move_voltage(10000); //max voltage 12000
       //pros::delay(20);
     }
-    else if (master.get_digital(DIGITAL_DOWN)) {
+    else if (master.get_digital(DIGITAL_UP)) {
       SnapMotor.move_voltage(-10000);
       //pros::delay(20);
     }

@@ -2,13 +2,32 @@
 
 /**auton function for scoring on goal on bridge**/
 void LeftOne(){
-  //put front claw up and score ring with lever
-  Claw(300.0, 75);
+  //front claw goes up to score ring with lever
+  Claw(300.0, 100);
+  Snap(-250.0, 100);
+  Drive(100.0, 50);
   do {
     pros::delay(20);
-  } while (!AtDistanceClawGoal(5));
+  } while (!AtDistanceDriveGoal(5));
   pros::delay(20);
+  Claw(-375.0, 100);
+  //open snap up
+  //put front claw down
+  //Drive towards mobile goal
+  Drive(1600.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  //use snap to get neutal mobile goal
+  Snap(600.0, 100);
+
+  pros::delay(500);
+  //drive backward slowly into home zone
+  Claw(150.0, 100);
+  Drive(-1300.0, 50);
 }
+
+
 
 /**auton function for scoring on goal on bridge**/
 void LeftTwo(){
@@ -42,6 +61,8 @@ void LeftTwo(){
   //drive backward slowly into home zone
   Drive(-1300.0, 25);
 }
+
+
 
 void RightOne() {
   //put back claw down
@@ -78,6 +99,8 @@ void RightOne() {
   pros::delay(20);
 
 }
+
+
 
 /**auton function for taking mobile goal out of triangle & scoring**/
 void RightTwo() {
@@ -148,7 +171,6 @@ void RightTwo() {
 
 
 
-
 void BothOne(){
   //front claw goes up to score ring with lever
   Claw(300.0, 50);
@@ -196,6 +218,7 @@ void BothOne(){
   pros::delay(1000);
 
 }
+
 
 
 void BothTwo(){
@@ -265,15 +288,138 @@ void BothTwo(){
 
 
 
+void poggersMiddle(){
+  //front claw goes up to score ring with lever
+  Claw(300.0, 75);
+  Drive(150.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(500);
+  Snap(-250.0, 100);
+  Claw(-375.0, 100);
+  //open snap up
+  //put front claw down
+  //Drive towards mobile goal
+  Rotate(175.0, 100);
+  Drive(1050.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Rotate(-50.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Drive(-100.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Rotate(50.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Drive(1150.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+
+  //use snap to get neutal mobile goal
+  Snap(600.0, 100);
+  pros::delay(500);
+  Claw(150.0, 50);
+  Drive(-1300.0, 50);
+}
+
+
+
+//Auton_wreckingBall
+void wreckingBall(){
+  //front claw goes up to score ring with lever
+  Claw(300.0, 100);
+  Drive(675.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Claw(-300.0, 75);
+  Snap(-250.0, 100);
+  Drive(500.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Claw(400.0, 100);
+  Drive(500.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  //open snap up
+  //put front claw down
+  //Drive towards mobile goal
+
+  //use snap to get neutal mobile goal
+  Rotate(350.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(500);
+  Drive(200.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Drive(-200.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Rotate(-175.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Drive(-500.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Rotate(-350.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Drive(500.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  pros::delay(20);
+  Snap(600.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceSnapGoal(5));
+  pros::delay(2000);
+  //drive backward slowly into home zone
+  Claw(150.0, 100);
+  Drive(-1300.0, 50);
+}
+
+
+
 
 
 /**varirables and functions array for auton selector**/
 int autonselector = 0;
 //define and initialize string array "titles[]" as constant
-const char *titles[] = {"LeftOne", "LeftTwo", "RightOne", "RightTwo", "BothOne", "BothTwo", "SkillsAuton"};
+const char *titles[] = {"LeftOne", "poggersMiddle", "wreckingBall", "LeftTwo", "RightOne", "RightTwo", "BothOne", "BothTwo", "SkillsOne", "SkillsTwo"};
 
 //define and initialize an array of function pointers for all auton functions
-void (*scripts[])() = {&LeftOne, &LeftTwo, &RightOne, &RightTwo, &BothOne, &BothTwo, &SkillsAuton};
+void (*scripts[])() = {&LeftOne, &poggersMiddle, &wreckingBall, &LeftTwo, &RightOne, &RightTwo, &BothOne, &BothTwo, &SkillsAutonOne, &SkillsAutonTwo};
 
 //define auton script runner function - run the selected auton script through on screen "autonselector"
 void LCDScriptExecute() {scripts[autonselector]();}

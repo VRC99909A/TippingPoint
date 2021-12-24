@@ -29,6 +29,8 @@ pros::Controller master(pros::E_CONTROLLER_MASTER);
 pros::Controller partner(pros::E_CONTROLLER_PARTNER);
 
 //define all sensors here
+pros::Imu ImuSensor(ImuPort);
+pros::Distance DistanceSensor(DistanceSensorPort);
 /**
 pros::ADIGyro::ADIGyro ( std::uint8_t port,
                          double multiplier = 1 )

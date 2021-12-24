@@ -18,14 +18,14 @@ void on_center_button() {
 
 void on_left_button() {
 	//autonselector = (autonselector -1 + 5) % 5;
-	autonselector = (autonselector + 7) % 8;
+	autonselector = (autonselector + 9) % 10;
 	pros::lcd::set_text(2, titles[autonselector]);
 	//print to controller screen
 	master.print(0, 0, titles[autonselector]);
 }
 
 void on_right_button() {
-	autonselector = (autonselector + 1) % 8;
+	autonselector = (autonselector + 1) % 10;
 	pros::lcd::set_text(2, titles[autonselector]);
 	//print to controller screen
 	master.print(0, 0, titles[autonselector]);
@@ -58,6 +58,8 @@ void initialize() {
 	//print to controller screen
 	master.print(0, 0, titles[autonselector]);//"Selected Auton: %d", titles[autonselector]);
 
+	//reset inertial sensor
+	ImuSensor.reset();
 }
 
 /**

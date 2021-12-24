@@ -15,9 +15,8 @@
 //port 4 fried
 //port 5 fried
 //define all sensor ports constant variables here
-/**
-#define GyroPort 1
-**/
+#define ImuPort 2
+#define DistanceSensorPort 9
 
  //declare global motor object variables here
  /*drivetrain motor variables*/
@@ -39,6 +38,8 @@ extern pros::Controller master;
 extern pros::Controller partner;
 
 //declare global sensor object variables here
+extern pros::Imu ImuSensor;
+extern pros::Distance DistanceSensor;
 /**
 extern pros::ADIGyro gyro;
 **/
@@ -92,15 +93,18 @@ void RightOne();
 void RightTwo();
 void BothOne();
 void BothTwo();
+void poggersMiddle();
+void wreckingBall();
 
-void SkillsAuton();
+void SkillsAutonOne();
+void SkillsAutonTwo();
 /* variables and functions for auton selector */
 //deckare autonselector - LED on screen auton selection indicator
 extern int autonselector;
 //declare string array "titles[]" as constant to store auto script function names for LED display
-extern const char *titles[7];
+extern const char *titles[10];
 //declare an array of function pointers for all auton script functions
-extern void (*scripts[7])();
+extern void (*scripts[10])();
 //declare auton script runner function - to be called in the main
 //or you can directly call through function pointer array - scripts[autonselector]();
 void LCDScriptExecute();
