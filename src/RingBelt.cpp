@@ -19,11 +19,11 @@ void Lift_fn(void* param) {
   while (true) {
 
     if (master.get_digital(DIGITAL_L1)) {
-      LiftMotor.move_voltage(5550);
+      LiftMotor.move_voltage(10000);
       //pros::delay(20);
     }
     else if (master.get_digital(DIGITAL_L2)) {
-      LiftMotor.move_voltage(-5550);
+      LiftMotor.move_voltage(-10000);
       //pros::delay(20);
     }
     else {

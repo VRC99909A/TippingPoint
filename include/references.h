@@ -5,15 +5,16 @@
 #define BLMotorPort 19
 #define BRMotorPort 16
 /*ring belt motor ports*/
-#define LiftMotorPort 4
+#define LiftMotorPort 18
 /*front claw motor port*/
 #define ClawMotorPort 8
 /*back claw motor port*/
 #define BackClawMotorPort 3
 /*snap claw motor port*/
-#define SnapMotorPort 7
+#define SnapMotorPort 20
 //port 4 fried
 //port 5 fried
+//port 7 fried
 //define all sensor ports constant variables here
 #define ImuPort 2
 #define DistanceSensorPort 9
@@ -56,8 +57,19 @@ void DriveTrain_fn(void* param);
 /*drive train functions*/
 void Drive(double, int);
 void Rotate(double, int);
-
+void RotateDegreesLeft(double);
 bool AtDistanceDriveGoal(int);
+void RotateDegreesRight(double);
+void TurnRightToZero();
+void TurnLeftToZero();
+void CorrectToZero();
+
+void TurnLeftPIDfromZero(double);
+void TurnRightPIDfromZero(double);
+
+void TurnLeft(double, int);
+void TurnRight(double, int);
+
 
 //declare ring belt function prototype
 void Lift_fn(void* param);
@@ -93,8 +105,8 @@ void RightOne();
 void RightTwo();
 void BothOne();
 void BothTwo();
-void poggersMiddle();
-void wreckingBall();
+void LeftMiddle();
+void Shell();
 
 void SkillsAutonOne();
 void SkillsAutonTwo();
