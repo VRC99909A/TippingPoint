@@ -2,7 +2,7 @@
 /*drivetrain motor ports*/
 #define FLMotorPort 1
 #define FRMotorPort 10
-#define BLMotorPort 19
+#define BLMotorPort 17
 #define BRMotorPort 16
 /*ring belt motor ports*/
 #define LiftMotorPort 18
@@ -11,10 +11,13 @@
 /*back claw motor port*/
 #define BackClawMotorPort 3
 /*snap claw motor port*/
-#define SnapMotorPort 20
+#define SnapMotorPort 14
 //port 4 fried
 //port 5 fried
 //port 7 fried
+//port 15 fried
+//port 19 fried
+//port 20 fried
 //define all sensor ports constant variables here
 #define ImuPort 2
 #define DistanceSensorPort 9
@@ -56,6 +59,7 @@ extern int turn;
 void DriveTrain_fn(void* param);
 /*drive train functions*/
 void Drive(double, int);
+void DriveVel(int);
 void Rotate(double, int);
 void RotateDegreesLeft(double);
 bool AtDistanceDriveGoal(int);

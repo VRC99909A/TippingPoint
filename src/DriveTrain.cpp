@@ -13,6 +13,13 @@ void Drive(double distance, int speed) {
   BRMotor.move_relative(distance, speed);
 }
 
+void DriveVel(int power){
+  FLMotor.move_velocity(power);
+  BLMotor.move_velocity(power);
+  FRMotor.move_velocity(power);
+  BRMotor.move_velocity(power);
+}
+
 //turn to target position, but does not wait for them to reach their target
 void Rotate(double distance, int speed) {
   FLMotor.move_relative(distance, speed);
