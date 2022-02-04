@@ -11,10 +11,11 @@
 /*back claw motor port*/
 #define BackClawMotorPort 3
 /*snap claw motor port*/
-#define SnapMotorPort 14
+#define SnapMotorPort 13
 //port 4 fried
 //port 5 fried
 //port 7 fried
+//port 14 fried
 //port 15 fried
 //port 19 fried
 //port 20 fried
@@ -102,9 +103,9 @@ void Snap(double, int);
 bool AtDistanceSnapGoal(int);
 
 //declare functions for antonomous.cpp
-/* function for red alliance side close to goal zone*/
 void LeftOne();
 void LeftTwo();
+void LeftWild();
 void RightOne();
 void RightTwo();
 void BothOne();
@@ -118,9 +119,9 @@ void SkillsAutonTwo();
 //deckare autonselector - LED on screen auton selection indicator
 extern int autonselector;
 //declare string array "titles[]" as constant to store auto script function names for LED display
-extern const char *titles[10];
+extern const char *titles[11];
 //declare an array of function pointers for all auton script functions
-extern void (*scripts[10])();
+extern void (*scripts[11])();
 //declare auton script runner function - to be called in the main
 //or you can directly call through function pointer array - scripts[autonselector]();
 void LCDScriptExecute();

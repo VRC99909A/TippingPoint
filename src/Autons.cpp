@@ -2,6 +2,7 @@
 
 /**auton function for scoring on goal on bridge**/
 void LeftOne(){
+  Lift(1000.0, 100);
   //front claw goes up to score ring with lever
   Claw(300.0, 100);
   do {
@@ -17,7 +18,7 @@ void LeftOne(){
   //put front claw down
   Claw(-375.0, 100);
   //Drive towards mobile goal
-  Drive(1550.0, 100);
+  Drive(1550.0, 200);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -25,10 +26,12 @@ void LeftOne(){
   //use snap to get neutal mobile goal
   //Drive(175.0, 25);
   Snap(200.0, 100);
+  pros::delay(50);
+
+  Claw(100.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceSnapGoal(5));
-  Claw(100.0, 100);
+  } while (!AtDistanceClawGoal(5));
   //pros::delay(500);
   //drive backward slowly into home zone
   Drive(-1300.0, 100);
@@ -38,60 +41,7 @@ void LeftOne(){
 
 /**auton function for scoring on goal on bridge**/
 void LeftTwo(){
-  //front claw goes up to score ring with lever
-  /**
-  Claw(300.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceClawGoal(5));
-  pros::delay(400);
-  //open snap up
-  Snap(-250.0, 75);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceSnapGoal(5));
-  pros::delay(200);
-  //put front claw down
-  Claw(-375.0, 100);
-  //Drive towards mobile goal
-  Drive(1550.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(500);
-  //use snap to get neutal mobile goal
-  Drive(175.0, 25);
-  Snap(600.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceSnapGoal(5));
-  pros::delay(20);
-  //drive backward slowly into home zone
-  Claw(200.0, 100);
-  Drive(-300.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceSnapGoal(5));
-  pros::delay(20);
-  RotateDegreesLeft(90);
-  Drive(-600.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceSnapGoal(5));
-  pros::delay(20);
-  RotateDegreesLeft(45);
-  Drive(-300.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceSnapGoal(5));
-  pros::delay(20);
-  BackClaw(370.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceBackClawGoal(5));
-  pros::delay(20);
-  Drive(1000.0, 100);
-  **/
+  Lift(1000.0, 100);
   Claw(300.0, 100);
   do {
     pros::delay(20);
@@ -105,18 +55,19 @@ void LeftTwo(){
   Claw(-375.0, 100);
 
   //Drive towards mobile goal
-  Drive(1550.0, 100);
+  Drive(1525.0, 200);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   //use snap to get neutal mobile goal
   Snap(200.0, 100);
+  pros::delay(50);
+
+  Claw(100.0, 100);
   do {
     pros::delay(20);
-  } while (!AtDistanceSnapGoal(5));
-
-  pros::delay(500);
+  } while (!AtDistanceClawGoal(5));
 
   //back up a little
   Drive(-150.0, 100);
@@ -124,7 +75,7 @@ void LeftTwo(){
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Rotate(350.0, 100); //turn left
+  Rotate(375.0, 100); //turn left
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -142,7 +93,7 @@ void LeftTwo(){
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  Rotate(75.0, 100); //continue turning left
+  Rotate(45.0, 100); //continue turning left
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -160,7 +111,7 @@ void LeftTwo(){
   } while (!AtDistanceBackClawGoal(10));
   pros::delay(500); //allow time for the backclaw to lift up
 
-  Rotate(150.0, 100); //turn left
+  Rotate(100.0, 100); //turn left
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -170,9 +121,83 @@ void LeftTwo(){
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
-
 }
 
+void LeftWild(){
+  DriveVel(200);
+  Claw(200.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceClawGoal(5));
+  Snap(-150.0, 75);
+  Claw(-200.0, 100);
+  pros::delay(950);
+  DriveVel(0);
+  Snap(200.0, 100);
+  Claw(100.0, 100);
+
+  //back up a little
+  Drive(-150.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Rotate(425.0, 100); //turn left
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(10));
+  pros::delay(20); //allow time for the backclaw to lift up
+
+
+  //back towards middle tall goal
+  Drive(-1000.0, 200);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+  Drive(-100.0, 100);
+  //lift backclaw to capture middle tall goal
+  BackClaw(370.0, 100); //lift BackClaw to capture alliance goal on the right
+  do {
+    pros::delay(20);
+  } while (!AtDistanceBackClawGoal(10));
+  pros::delay(20); //allow time for the backclaw to lift up
+
+  Rotate(-900.0, 100); //turn right
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-1000.0, 200);
+  Drive(50.0, 100);
+  BackClaw(-370.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(150.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Rotate(200.0, 200); //turn left
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-1500.0, 200);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  BackClaw(370.0, 100);
+  do {
+    pros::delay(20);
+  } while (!AtDistanceBackClawGoal(10));
+  pros::delay(20);
+
+  Lift(-2000.0, 200);
+
+}
 
 
 void RightOne() {
@@ -345,10 +370,10 @@ void RightTwo() {
 
   Claw(-375.0, 100);
   //Drive towards mobile goal
-  Drive(1550.0, 100);
+  Drive(1550.0, 200);
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceDriveGoal(500));
 
   Snap(200.0, 100);
   do {
@@ -358,20 +383,20 @@ void RightTwo() {
   Rotate(-200.0, 100); //turn right with back facing middle tall goal
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceDriveGoal(200));
 
   Drive(-220, 100);//pull back a little
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceDriveGoal(200));
 
-  Rotate(-170.0, 100); //turn right with back facing middle tall goal
+  Rotate(-250.0, 100); //turn right with back facing middle tall goal
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceDriveGoal(200));
 
   //back towards middle tall goal
-  Drive(-390.0, 100);
+  Drive(-400.0, 100);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
@@ -515,41 +540,6 @@ void BothTwo(){
 
 
 void LeftMiddle(){
-  /**
-  //front claw goes up to score ring with lever
-  Claw(300.0, 75);
-  Drive(150.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(500);
-  Snap(-250.0, 100);
-  Claw(-375.0, 100);
-  //open snap up
-  //put front claw down
-  //Drive towards mobile goal
-  Drive(950.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(20);
-  ImuSensor.set_heading(0.0);
-  RotateDegreesRight(58.0);
-  Drive(1400.0, 100);
-  do {
-    pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
-  pros::delay(1000);
-
-  //use snap to get neutal mobile goal
-  Snap(600.0, 100);
-  pros::delay(500);
-  Claw(150.0, 50);
-  pros::delay(500);
-  ImuSensor.set_heading(0.0);
-  RotateDegreesLeft(45.0);
-  Drive(-10000.0, 50);
-  **/
 
   //front claw goes up to score ring with lever
   Claw(300.0, 100);
@@ -631,10 +621,10 @@ void Shell(){
 /**varirables and functions array for auton selector**/
 int autonselector = 0;
 //define and initialize string array "titles[]" as constant
-const char *titles[] = {"LeftOne   ", "LeftTwo   ", "LeftMiddle", "RightOne  ", "RightTwo  ", "BothOne   ", "BothTwo   ", "Shell     ", "SkillsOne ", "SkillsTwo "};
+const char *titles[] = {"LeftOne   ", "LeftTwo   ", "LeftWild ", "LeftMiddle", "RightOne  ", "RightTwo  ", "BothOne   ", "BothTwo   ", "Shell     ", "SkillsOne ", "SkillsTwo "};
 
 //define and initialize an array of function pointers for all auton functions
-void (*scripts[])() = {&LeftOne, &LeftTwo, &LeftMiddle, &RightOne, &RightTwo, &BothOne, &BothTwo, &Shell, &SkillsAutonOne, &SkillsAutonTwo};
+void (*scripts[])() = {&LeftOne, &LeftTwo, &LeftWild, &LeftMiddle, &RightOne, &RightTwo, &BothOne, &BothTwo, &Shell, &SkillsAutonOne, &SkillsAutonTwo};
 
 //define auton script runner function - run the selected auton script through on screen "autonselector"
 void LCDScriptExecute() {scripts[autonselector]();}

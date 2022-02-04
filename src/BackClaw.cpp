@@ -32,7 +32,7 @@ void BackClaw_fn(void* param) {
   while (true) {
 
     if (master.get_digital(DIGITAL_X)){
-      BackClawMotor.move_voltage(5000);
+      BackClawMotor.move_voltage(8000); //5000
       do {
         pros::delay(20);
       } while (BackClawMotor.get_position() < rot_limit_max);
@@ -40,7 +40,7 @@ void BackClaw_fn(void* param) {
       //pros::delay(20);
     }
     else if (master.get_digital(DIGITAL_B) && BackClawMotor.get_position() > rot_limit_min) {
-      BackClawMotor.move_voltage(-5000);
+      BackClawMotor.move_voltage(-8000); //-5000
       do {
         pros::delay(20);
       } while (BackClawMotor.get_position() > rot_limit_min);
@@ -49,13 +49,14 @@ void BackClaw_fn(void* param) {
     }
     else {
       if (25 < abs((int)(BackClawMotor.get_position() - rot_limit_max)) && abs((int)(BackClawMotor.get_position() - rot_limit_max)) < 30 && BackClawMotor.get_position() < rot_limit_max){
-        BackClawMotor.move_voltage(5000);
+        BackClawMotor.move_voltage(8000); //5000
         do {
           pros::delay(20);
         } while (BackClawMotor.get_position() < rot_limit_max);
         pros::delay(20);
       }
       else{
+          //BackClawMotor.move_voltage(0);
           BackClawMotor.move_velocity(0);
       }
       //pros::delay(20);
