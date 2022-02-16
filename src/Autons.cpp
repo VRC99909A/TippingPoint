@@ -1,6 +1,6 @@
 #include "main.h"
 
-/**auton function for scoring on goal on bridge**/
+/***auton function for scoring on goal on bridge***/
 void LeftOne(){
   Lift(1000.0, 100);
   //front claw goes up to score ring with lever
@@ -42,7 +42,7 @@ void LeftOne(){
 /**auton function for scoring on goal on bridge**/
 void LeftTwo(){
   Lift(1000.0, 200);
-  DriveVel(200);                                 
+  DriveVel(200);
   BackClaw(200.0, 100);
   Claw(200.0, 100);
   do {
