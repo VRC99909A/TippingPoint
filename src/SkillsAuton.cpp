@@ -2,9 +2,7 @@
 
 // Start of SkillsAutonOne
 void SkillsAutonOne(){
-
   //ImuSensor.reset(); //reset inertial sensor
-
 
   Drive(300.0, 50); //drive forward
   Claw(300.0, 100); //raise seesaw to release front claw
@@ -13,19 +11,21 @@ void SkillsAutonOne(){
   Claw(-375.0, 100); //lower seesaw to get ready to capture low neutal goal on the right
 
   Snap(-250.0, 50); //open up snap
-  Drive(1400.0, 100);//drive forward to capture low neutal goal on the right
+  Drive(1400.0, 200);//drive forward to capture low neutal goal on the right
+  //pros::delay(2000); //let it run for 2 sec before check on target
   do {
     pros::delay(20);
-  } while (!AtDistanceDriveGoal(5));
+  } while (!AtDistanceDriveGoal(5)); //check on target
 
   Snap(300.0, 100);//close snap to capture low neutal goal on the right
+  pros::delay(500);
 
-  Drive(-250, 100);//pull back a little
+  Drive(-240, 100);//pull back a little
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  RotateDegreesLeft(30.0); //turn left 30 degree
+  TurnLeftToHeading(325.0); //turn to heading 325 degree
   pros::lcd::set_text(1, std::to_string(ImuSensor.get_heading()));
 
   Drive(-600, 80);//drive backwards to capture alliance goal on the right
@@ -40,26 +40,102 @@ void SkillsAutonOne(){
   pros::delay(500); //allow time for the backclaw to lift up
 
   Drive(1500, 80);//drive forward towards the platform
+  //pros::delay(2000); //let it run for 2 sec before check on target
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
   Claw(650.0, 100);//raise seesaw to get ready to deposite low neutal goal
   Drive(1000, 80);//drive forward to push rings out of the way
+  pros::delay(1000);
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  pros::delay(5000);
   Drive(-300, 80);//pull back
   do {
     pros::delay(20);
   } while (!AtDistanceDriveGoal(5));
 
-  //turn right 45 degree back to starting heading)
+  //turn back to north facing platform)
   CorrectToZero();
   pros::lcd::set_text(1, std::to_string(ImuSensor.get_heading()));
-  pros::delay(10000);
+  pros::delay(100);
+
+  Drive(400, 100);//drive forward to level the platform
+  pros::delay(1000);
+  Drive(-400, 100);//pull back
+  Claw(-100.0, 100);//lower seesaw
+
+  Snap(-250.0, 100); //open up snap
+  Drive(400, 100);//thrust forward towards the platform
+  pros::delay(1000);
+// first goal deposited
+
+
+  Drive(-700, 80);//pull back
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(-800, 80);//drive backward to push tall neutal goal to alliance zone
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Drive(600, 80);//drive back up towards the platform
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  BackClaw(-200.0, 100); //lower backclaw
+  pros::delay(1000);
+
+  Claw(-400.0, 100); //lower seesaw
+  BackClaw(-170.0, 100); //lower backclaw
+  do {
+    pros::delay(20);
+  } while (!AtDistanceBackClawGoal(10));
+  pros::delay(500);
+
+  Drive(400, 80);//drive forward to allow clearance between alliance goal
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  BackClaw(370.0, 100); //raise backclaw
+  pros::delay(1000);
+
+  TurnRightToHeading(170.00); //turn right 180 degree
+
+  Claw(-300.0, 100); //lower seesaw
+
+  Drive(600, 80);//drive towards the alliance goal
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+
+  Snap(400.0, 100);//close snap to capture low neutal goal on the right
+  pros::delay(500);
+
+  Claw(500.0, 100); //raise seesaw
+
+  TurnLeftToZero();
+
+  Drive(1300, 100);//drive forward to platform
+  pros::delay(1000);
+  Snap(-250.0, 100); //open up snap
+  pros::delay(2000);
+  //Claw(-100.0, 100); //lower seesaw
+
+  Drive(-300, 100);//pull back
+  do {
+    pros::delay(20);
+  } while (!AtDistanceDriveGoal(5));
+// second goal deposited
+
+  TurnLeftToHeading(250.00);
+
 
 
 
@@ -221,7 +297,7 @@ void SkillsAutonTwo(){
 
   Snap(-250.0, 100); //open up snap
   pros::delay(1000);
-  Drive(1300, 100);//drive forward to platform
+  Drive(1550, 100);//drive forward to platform (forward step)
   pros::delay(3000);
   //Claw(-100.0, 100); //lower seesaw
 
