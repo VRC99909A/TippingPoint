@@ -28,94 +28,67 @@ void Rotate(double distance, int speed) {
   BRMotor.move_relative(-distance, speed);
 }
 
-void RotateDegreesLeft(double degrees) {
-  double H0 = ImuSensor.get_heading(); //initial heading
-  double Ht; //target heading
-  double delta0 = 360.0; //pre-turn delta
-  double delta1 = degrees; //post-turn delta
-
-  if ( H0 - degrees < 0.0 ) { //crossing zero
-    Ht = 360.0 + H0 - degrees;
+//turn left to target heading - top speed 200
+void TurnLeftToHeading(double target) {
+  double delta; //declare delta
+  if ( ImuSensor.get_heading() - target < 0.0 ) { //crossing zero
+    delta = 360.0 + ImuSensor.get_heading() - target;
   }
   else { //not crossing zero
-    Ht = H0 - degrees;
+    delta = ImuSensor.get_heading() - target;
   }
 
   do{
-    delta0 = delta1;
-    FLMotor.move_velocity(25);
-    BLMotor.move_velocity(25);
-    FRMotor.move_velocity(-25);
-    BRMotor.move_velocity(-25);
+    FLMotor.move_velocity(50);
+    BLMotor.move_velocity(50);
+    FRMotor.move_velocity(-50);
+    BRMotor.move_velocity(-50);
     pros::delay(50);
-    if ( ImuSensor.get_heading() - Ht < 0.0 ) { //crossing zero
-      delta1 = 360.0 + ImuSensor.get_heading() - Ht;
+    if ( ImuSensor.get_heading() - target < 0.0 ) { //crossing zero
+      delta = 360.0 + ImuSensor.get_heading() - target;
     }
     else { //not crossing zero
-      delta1 = ImuSensor.get_heading() - Ht;
+      delta = ImuSensor.get_heading() - target;
     }
     //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while (((ImuSensor.get_heading()- Ht > 0.1) || (ImuSensor.get_heading() - Ht < -0.1)) && (delta0 > delta1));
+  } while (delta > 0.5);
   FLMotor.move_velocity(0);
   BLMotor.move_velocity(0);
   FRMotor.move_velocity(0);
   BRMotor.move_velocity(0);
 }
 
-void RotateDegreesRight(double degrees) {
-  double H0 = ImuSensor.get_heading(); //initial heading
-  double Ht; //target heading
-  double delta0 = 360.0; //pre-turn delta
-  double delta1 = degrees; //post-turn delta
-
-  if ( H0 + degrees > 360.0 ) { //crossing zero
-    Ht = H0 + degrees - 360.0;
+//turn left to target heading  - top speed 200
+void TurnRightToHeading(double target) {
+  double delta; //declare delta
+  if (target - ImuSensor.get_heading() < 0.0 ) { //crossing zero
+    delta = 360.0 + target - ImuSensor.get_heading();
   }
   else { //not crossing zero
-    Ht = H0 + degrees;
+    delta = target - ImuSensor.get_heading();
   }
 
   do{
-    delta0 = delta1;
-    FLMotor.move_velocity(-25);
-    BLMotor.move_velocity(-25);
-    FRMotor.move_velocity(25);
-    BRMotor.move_velocity(25);
+    FLMotor.move_velocity(-50);
+    BLMotor.move_velocity(-50);
+    FRMotor.move_velocity(50);
+    BRMotor.move_velocity(50);
     pros::delay(50);
-    if ( Ht - ImuSensor.get_heading() < 0.0 ) { //crossing zero
-      delta1 = 360.0 + Ht - ImuSensor.get_heading();
+    if ( target - ImuSensor.get_heading() < 0.0 ) { //crossing zero
+      delta = 360.0 + target - ImuSensor.get_heading();
     }
     else { //not crossing zero
-      delta1 = Ht - ImuSensor.get_heading();
+      delta = target - ImuSensor.get_heading();
     }
     //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while (((ImuSensor.get_heading()- Ht > 0.1) || (ImuSensor.get_heading() - Ht < -0.1)) && (delta0 > delta1));
+  } while (delta > 0.5);
   FLMotor.move_velocity(0);
   BLMotor.move_velocity(0);
   FRMotor.move_velocity(0);
   BRMotor.move_velocity(0);
 }
 
-
-void TurnRightToZero() {
-  do{
-    FLMotor.move_velocity(-100);
-    BLMotor.move_velocity(-100);
-    FRMotor.move_velocity(100);
-    BRMotor.move_velocity(100);
-    //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while (ImuSensor.get_heading() < 360.0-20.0); //turn right until 360 degree roughly
-  //correction track
-  FLMotor.move_velocity(0);
-  BLMotor.move_velocity(0);
-  FRMotor.move_velocity(0);
-  BRMotor.move_velocity(0);
-
-  pros::delay(250);
-  void CorrectToZero();
-}
-
-
+//speed turn left back to north 0/360  - top speed 200
 void TurnLeftToZero() {
   do{
     FLMotor.move_velocity(100);
@@ -123,7 +96,7 @@ void TurnLeftToZero() {
     FRMotor.move_velocity(-100);
     BRMotor.move_velocity(-100);
     //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while (ImuSensor.get_heading() > 20.0); //turn left until 0 degree roughly
+  } while (ImuSensor.get_heading() > 20.0); //turn left at full speed until 20 degree roughly
   //correction track
   FLMotor.move_velocity(0);
   BLMotor.move_velocity(0);
@@ -134,124 +107,46 @@ void TurnLeftToZero() {
   void CorrectToZero();
 }
 
+//speed turn right back to north 0/360  - top speed 200
+void TurnRightToZero() {
+  do{
+    FLMotor.move_velocity(-100);
+    BLMotor.move_velocity(-100);
+    FRMotor.move_velocity(100);
+    BRMotor.move_velocity(100);
+    //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
+  } while (ImuSensor.get_heading() < 360.0-20.0); //turn right at full speed until 340 degree roughly
+  //correction track
+  FLMotor.move_velocity(0);
+  BLMotor.move_velocity(0);
+  FRMotor.move_velocity(0);
+  BRMotor.move_velocity(0);
 
+  pros::delay(250);
+  void CorrectToZero();
+}
+
+//slow turn back to north 0/360 from either direction left/right
 void CorrectToZero() {
   do{
     if (ImuSensor.get_heading() < 360.0 && ImuSensor.get_heading() > 270.0){//correct right
-      FLMotor.move_velocity(-25);
-      BLMotor.move_velocity(-25);
-      FRMotor.move_velocity(25);
-      BRMotor.move_velocity(25);
+      FLMotor.move_velocity(-35);
+      BLMotor.move_velocity(-35);
+      FRMotor.move_velocity(35);
+      BRMotor.move_velocity(35);
     }
     else if (ImuSensor.get_heading() > 0.0 && ImuSensor.get_heading() < 90.0){ //correct left
-      FLMotor.move_velocity(25);
-      BLMotor.move_velocity(25);
-      FRMotor.move_velocity(-25);
-      BRMotor.move_velocity(-25);
+      FLMotor.move_velocity(35);
+      BLMotor.move_velocity(35);
+      FRMotor.move_velocity(-35);
+      BRMotor.move_velocity(-35);
     }
     //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while (((360.0 - ImuSensor.get_heading()) > 0.1 && ImuSensor.get_heading() > 270.0) || ((ImuSensor.get_heading()) > 0.1 && ImuSensor.get_heading() < 90.0));
+  } while ((((360.0 - ImuSensor.get_heading()) > 5) && (ImuSensor.get_heading() > 270.0)) || (((ImuSensor.get_heading()) > 5) && (ImuSensor.get_heading() < 90.0)));
   FLMotor.move_velocity(0);
   BLMotor.move_velocity(0);
   FRMotor.move_velocity(0);
   BRMotor.move_velocity(0);
-}
-
-
-void TurnLeftPIDfromZero(double degrees){
-  do{
-    if ((ImuSensor.get_heading() <= 360.0) && (ImuSensor.get_heading() >= 90.0)){//correct right
-      FLMotor.move_velocity(100 - (int)(((1-(ImuSensor.get_heading()-360+degrees)/degrees))*90.0));
-      BLMotor.move_velocity(100 - (int)(((1-(ImuSensor.get_heading()-360+degrees)/degrees))*90.0));
-      FRMotor.move_velocity(-(100 - (int)(((1-(ImuSensor.get_heading()-360+degrees)/degrees))*90.0)));
-      BRMotor.move_velocity(-(100 - (int)(((1-(ImuSensor.get_heading()-360+degrees)/degrees))*90.0)));
-    }
-    else if ((ImuSensor.get_heading() >= 0.0) && (ImuSensor.get_heading() < 90.0)){ //correct left at full speed
-      FLMotor.move_velocity(100);
-      BLMotor.move_velocity(100);
-      FRMotor.move_velocity(-100);
-      BRMotor.move_velocity(-100);
-    }
-    //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while ((ImuSensor.get_heading() > (360.0-degrees)) || (ImuSensor.get_heading() < 45.0)); //turn left until desired degree from default heading (0)
-  FLMotor.move_velocity(0);
-  BLMotor.move_velocity(0);
-  FRMotor.move_velocity(0);
-  BRMotor.move_velocity(0);
-
-  pros::delay(250);
-}
-
-void TurnRightPIDfromZero(double degrees){
-  do{
-    if (ImuSensor.get_heading() <= 360.0 && ImuSensor.get_heading() > 270.0){//correct right
-      FLMotor.move_velocity(-100);
-      BLMotor.move_velocity(-100);
-      FRMotor.move_velocity(100);
-      BRMotor.move_velocity(100);
-    }
-    else if (ImuSensor.get_heading() >= 0.0 && ImuSensor.get_heading() <= 270.0){ //correct left at full speed
-      FLMotor.move_velocity(-(100 - (int)(((1-(degrees - ImuSensor.get_heading())/degrees))*90.0)));
-      BLMotor.move_velocity(-(100 - (int)(((1-(degrees - ImuSensor.get_heading())/degrees))*90.0)));
-      FRMotor.move_velocity(100 - (int)(((1-(degrees - ImuSensor.get_heading())/degrees))*90.0));
-      BRMotor.move_velocity(100 - (int)(((1-(degrees - ImuSensor.get_heading())/degrees))*90.0));
-    }
-    //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while (ImuSensor.get_heading() > 315.0 || ImuSensor.get_heading() < degrees); //turn left until desired degree from default heading (0)
-  FLMotor.move_velocity(0);
-  BLMotor.move_velocity(0);
-  FRMotor.move_velocity(0);
-  BRMotor.move_velocity(0);
-
-  pros::delay(250);
-}
-
-void TurnLeft(double degrees, int speed){
-  do{
-    if ((ImuSensor.get_heading() <= 360.0) && (ImuSensor.get_heading() >= 90.0)){//correct right
-      FLMotor.move_velocity(speed);
-      BLMotor.move_velocity(speed);
-      FRMotor.move_velocity(-speed);
-      BRMotor.move_velocity(-speed);
-    }
-    else if ((ImuSensor.get_heading() >= 0.0) && (ImuSensor.get_heading() < 90.0)){ //correct left at full speed
-      FLMotor.move_velocity(speed);
-      BLMotor.move_velocity(speed);
-      FRMotor.move_velocity(-speed);
-      BRMotor.move_velocity(-speed);
-    }
-    //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while ((ImuSensor.get_heading() > (360.0-degrees)) || (ImuSensor.get_heading() < 45.0)); //turn left until desired degree from default heading (0)
-  FLMotor.move_velocity(0);
-  BLMotor.move_velocity(0);
-  FRMotor.move_velocity(0);
-  BRMotor.move_velocity(0);
-
-  pros::delay(250);
-}
-
-void TurnRight(double degrees, int speed){
-  do{
-    if (ImuSensor.get_heading() <= 360.0 && ImuSensor.get_heading() > 270.0){//correct right
-      FLMotor.move_velocity(-speed);
-      BLMotor.move_velocity(-speed);
-      FRMotor.move_velocity(speed);
-      BRMotor.move_velocity(speed);
-    }
-    else if (ImuSensor.get_heading() >= 0.0 && ImuSensor.get_heading() <= 270.0){ //correct left at full speed
-      FLMotor.move_velocity(-speed);
-      BLMotor.move_velocity(-speed);
-      FRMotor.move_velocity(speed);
-      BRMotor.move_velocity(speed);
-    }
-    //printf("IMU get heading: %f degrees\n", ImuSensor.get_heading());
-  } while (ImuSensor.get_heading() > 315.0 || ImuSensor.get_heading() < degrees); //turn left until desired degree from default heading (0)
-  FLMotor.move_velocity(0);
-  BLMotor.move_velocity(0);
-  FRMotor.move_velocity(0);
-  BRMotor.move_velocity(0);
-
-  pros::delay(250);
 }
 
 

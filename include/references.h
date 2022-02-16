@@ -11,14 +11,16 @@
 /*back claw motor port*/
 #define BackClawMotorPort 3
 /*snap claw motor port*/
-#define SnapMotorPort 13
-//port 4 fried
-//port 5 fried
-//port 7 fried
-//port 14 fried
-//port 15 fried
-//port 19 fried
-//port 20 fried
+#define SnapMotorPort 11
+//port 4 fried - old brain
+//port 5 fried - old brain
+//port 7 fried - old brain
+//port 12 fried - old brain
+//port 13 fried - old brain
+//port 14 fried - old brain
+//port 15 fried - old brain
+//port 19 fried - old brain
+//port 20 fried - old brain
 //define all sensor ports constant variables here
 #define ImuPort 2
 #define DistanceSensorPort 9
@@ -59,21 +61,16 @@ extern int turn;
 /*drive train task thread function prototype*/
 void DriveTrain_fn(void* param);
 /*drive train functions*/
+bool AtDistanceDriveGoal(int);
 void Drive(double, int);
 void DriveVel(int);
 void Rotate(double, int);
-void RotateDegreesLeft(double);
-bool AtDistanceDriveGoal(int);
-void RotateDegreesRight(double);
-void TurnRightToZero();
+
+void TurnLeftToHeading(double target);
+void TurnRightToHeading(double target);
 void TurnLeftToZero();
+void TurnRightToZero();
 void CorrectToZero();
-
-void TurnLeftPIDfromZero(double);
-void TurnRightPIDfromZero(double);
-
-void TurnLeft(double, int);
-void TurnRight(double, int);
 
 
 //declare ring belt function prototype

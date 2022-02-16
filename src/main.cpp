@@ -49,7 +49,7 @@ void initialize() {
 	pros::lcd::register_btn2_cb(on_right_button);
 
 	//wait for 10 sec to allow time for auton selection
-	//pros::delay(10000);
+	pros::delay(10000);
 
 	//set V5 LCD text display
 	pros::lcd::set_text(1, "Initialized");
@@ -59,7 +59,7 @@ void initialize() {
 	master.print(0, 0, titles[autonselector]);//"Selected Auton: %d", titles[autonselector]);
 
 	//reset inertial sensor
-	ImuSensor.reset();
+	//ImuSensor.reset();
 }
 
 /**
