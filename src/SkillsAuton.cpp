@@ -1,6 +1,6 @@
 #include "main.h"
 
-// Start of SkillsAutonOne
+/**Start of SkillsAutonOne**/
 void SkillsAutonOne(){
   //ImuSensor.reset(); //reset inertial sensor
 
@@ -152,7 +152,7 @@ void SkillsAutonOne(){
 
 
 
-//Start of SkillsAutonTwo
+/**Start of SkillsAutonTwo**/
 //start on the right side
 void SkillsAutonTwo(){
 
