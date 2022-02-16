@@ -1,6 +1,6 @@
 #include "main.h"
 
-//Returns true/false as to whether the drive wheels have reached their position goal set by driveForDistance
+// Returns true/false as to whether the drive wheels have reached their position goal set by driveForDistance
 bool AtDistanceDriveGoal(int threshold) {
   return (abs((int)(FLMotor.get_position()-FLMotor.get_target_position())) < threshold);
 }

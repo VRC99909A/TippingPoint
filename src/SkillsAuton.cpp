@@ -1,6 +1,6 @@
 #include "main.h"
 
-//Start of SkillsAutonOne
+// Start of SkillsAutonOne
 void SkillsAutonOne(){
 
   //ImuSensor.reset(); //reset inertial sensor

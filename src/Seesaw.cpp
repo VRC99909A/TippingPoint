@@ -11,7 +11,7 @@ void Claw(double distance, int speed){
 }
 
 
-//thread for all claw controls
+// thread for all claw controls
 void Claw_fn(void* param) {
 
   ClawMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
